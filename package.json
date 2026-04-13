@@ -1,0 +1,30 @@
+{
+  "name": "reddit-monitoring-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reddit-only monitoring MVP skeleton",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/**/*.test.ts",
+    "smoke:reddit": "tsx src/workers/smoke-reddit-phase1.ts",
+    "smoke:reddit:live": "set REDDIT_SMOKE_MODE=live&& tsx src/workers/smoke-reddit-phase1.ts",
+    "db:migrate": "tsx src/storage/schema/run-migrations.ts",
+    "worker:reddit:once": "tsx src/workers/run-reddit-phase1-once.postgres.ts",
+    "worker:reddit:once:mock": "tsx src/workers/run-reddit-phase1-once.postgres-mock.ts",
+    "worker:phase1:once": "tsx workers/reddit-phase1-once.ts",
+    "worker:phase1:scheduler": "tsx workers/reddit-phase1-scheduler.ts",
+    "app:api": "tsx apps/api/src/server.ts",
+    "phase1:manual-run": "tsx scripts/manual-phase1-run.ts",
+    "verify:phase1:postgres": "tsx scripts/verify-phase1-postgres.ts",
+    "trend:board:summary": "tsx scripts/trend-board-summary.ts"
+  },
+  "dependencies": {
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/pg": "^8.15.2",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  }
+}
